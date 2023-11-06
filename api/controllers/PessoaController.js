@@ -4,6 +4,7 @@ class PessoaController {
   static async pegaTodasAsPessoas(req, res) {
     try {
       const todasAsPessoas = await database.Pessoas.findAll();
+
       return res.status(200).json(todasAsPessoas);
     } catch (error) {
       return res.status(500).json(error.message);
@@ -12,6 +13,7 @@ class PessoaController {
 
   static async pegaUmaPessoa(req, res) {
     const { id } = req.params;
+
     try {
       const umaPessoa = await database.Pessoas.findOne({
         where: { id: Number(id) },
@@ -28,6 +30,7 @@ class PessoaController {
 
     try {
       const novaPessoaCriada = await database.Pessoas.create(novaPessoa);
+
       return res.status(200).json(novaPessoaCriada);
     } catch (error) {
       return res.status(500).json(error.message);
@@ -55,6 +58,7 @@ class PessoaController {
 
     try {
       await database.Pessoas.destroy({ where: { id: Number(id) } });
+
       return res
         .status(200)
         .json({ message: `Pessoa com o id ${id} foi deletado com sucesso` });
