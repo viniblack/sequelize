@@ -68,6 +68,20 @@ class PessoaController {
     }
   }
 
+  static async restauraPessoa(req, res) {
+    const { id } = req.params;
+
+    try {
+      await database.Pessoas.restore({ where: { id: Number(id) } });
+
+      return res
+        .status(200)
+        .json({ message: `Pessoa com o id ${id} foi restaurado com sucesso` });
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
+
   static async pegaUmMatricula(req, res) {
     const { estudanteId, matriculaId } = req.params;
 
@@ -125,11 +139,9 @@ class PessoaController {
     try {
       await database.Matriculas.destroy({ where: { id: Number(matriculaId) } });
 
-      return res
-        .status(200)
-        .json({
-          message: `Pessoa com o id ${matriculaId} foi deletado com sucesso`,
-        });
+      return res.status(200).json({
+        message: `Pessoa com o id ${matriculaId} foi deletado com sucesso`,
+      });
     } catch (error) {
       return res.status(500).json(error.message);
     }

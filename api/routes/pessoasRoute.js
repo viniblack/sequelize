@@ -3,21 +3,23 @@ const PessoaController = require("../controllers/PessoaController");
 
 const router = Router();
 
-router.get("/pessoas", PessoaController.pegaTodasAsPessoas);
-router.get("/pessoas/:id", PessoaController.pegaUmaPessoa);
-router.post("/pessoas", PessoaController.criarPessoa);
-router.put("/pessoas/:id", PessoaController.atualizarPessoa);
-router.delete("/pessoas/:id", PessoaController.apagarPessoa);
-router.get(
-  "/pessoas/:estudanteId/matricula/:matriculaId",
-  PessoaController.pegaUmMatricula
-);
-router.post("/pessoas/:estudanteId/matricula", PessoaController.criarMatricula);
-router.put(
-  "/pessoas/:estudanteId/matricula/:matriculaId",
-  PessoaController.atualizarMatricula
-);
-router.delete(
+router
+  .get("/pessoas", PessoaController.pegaTodasAsPessoas)
+  .get("/pessoas/:id", PessoaController.pegaUmaPessoa)
+  .post("/pessoas", PessoaController.criarPessoa)
+  .put("/pessoas/:id", PessoaController.atualizarPessoa)
+  .delete("/pessoas/:id", PessoaController.apagarPessoa)
+  .post("/pessoas/:id/restaura", PessoaController.restauraPessoa)
+  .get(
+    "/pessoas/:estudanteId/matricula/:matriculaId",
+    PessoaController.pegaUmMatricula
+  )
+  .post("/pessoas/:estudanteId/matricula", PessoaController.criarMatricula)
+  .put(
+    "/pessoas/:estudanteId/matricula/:matriculaId",
+    PessoaController.atualizarMatricula
+  )
+  .delete(
     "/pessoas/:estudanteId/matricula/:matriculaId",
     PessoaController.apagarMatricula
   );
