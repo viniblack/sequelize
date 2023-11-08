@@ -20,6 +20,7 @@ router
   .post("/pessoas", PessoaController.criarPessoa)
   .post("/pessoas/:id/restaura", PessoaController.restauraPessoa)
   .post("/pessoas/:estudanteId/matricula", PessoaController.criarMatricula)
+  .post("/pessoas/:estudanteId/cancela", PessoaController.cancelaPessoa)
   .put("/pessoas/:id", PessoaController.atualizarPessoa)
   .put(
     "/pessoas/:estudanteId/matricula/:matriculaId",
